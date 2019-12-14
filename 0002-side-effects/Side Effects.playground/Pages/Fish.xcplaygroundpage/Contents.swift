@@ -111,9 +111,8 @@ func >=> <A, B, C>(
   _ f: @escaping (A) -> B?,
   _ g: @escaping (B) -> C?
   ) -> ((A) -> C?) {
-
   return { a in
-    fatalError()
+    f(a).flatMap { g($0) }
   }
 }
 
@@ -123,9 +122,8 @@ func >=> <A, B, C>(
   _ f: @escaping (A) -> [B],
   _ g: @escaping (B) -> [C]
   ) -> ((A) -> [C]) {
-
   return { a in
-    fatalError()
+    f(a).flatMap { g($0) }
   }
 }
 
