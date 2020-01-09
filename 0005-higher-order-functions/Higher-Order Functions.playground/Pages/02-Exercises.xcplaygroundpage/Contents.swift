@@ -3,7 +3,15 @@
 
  1. Write `curry` for functions that take 3 arguments.
  */
-// TODO
+func curry <A, B, C, D>(_ f: @escaping (A, B, C) -> D) -> (A) -> (B) -> (C) -> D {
+    return { a in
+        return { b in
+            return { c in
+                f(a, b, c)
+            }
+        }
+    }
+}
 /*:
  2. Explore functions and methods in the Swift standard library, Foundation, and other third party code, and convert them to free functions that compose using `curry`, `zurry`, `flip`, or by hand.
  */
@@ -15,7 +23,9 @@
 /*:
  4. Write a function, `uncurry`, that takes a curried function and returns a function that takes two arguments. When might it be useful to un-curry a function?
  */
-// TODO
+func uncurry <A, B, C> (_ f: @escaping (A) -> (B) -> C) -> (A, B) -> C {
+    return { a, b in f(a)(b) }
+}
 /*:
  5. Write `reduce` as a curried, free function. What is the configuration _vs._ the data?
  */
